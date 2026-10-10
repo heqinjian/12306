@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>中国铁路12306网站</title>
+  <meta name="description" content="中国铁路12306网站，提供火车票查询、预订、退改签，以及正晚点、时刻表、代售点等信息查询服务。">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+  <!-- ============ 图标精灵 ============ -->
+  <svg class="svg-sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.6 15.6 21 21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-place" viewBox="0 0 24 24"><path d="M12 21.5s7-5.9 7-11.3A7 7 0 1 0 5 10.2c0 5.4 7 11.3 7 11.3z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-date" viewBox="0 0 24 24"><rect x="3.4" y="5" width="17.2" height="15.6" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.4 9.8h17.2M8 3.2v3.4M16 3.2v3.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24"><path d="M8.5 3.5 4.5 7.5l4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.5 7.5h14.8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M15.5 20.5l4-4-4-4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.5 16.5H4.7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+    <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3.2 8.6A2.4 2.4 0 0 1 5.6 6.2h12.8a2.4 2.4 0 0 1 2.4 2.4v1.5a2.1 2.1 0 0 0 0 4.2v1.5a2.4 2.4 0 0 1-2.4 2.4H5.6a2.4 2.4 0 0 1-2.4-2.4v-1.5a2.1 2.1 0 0 0 0-4.2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12.6 8.4v1.2M12.6 11.4v1.2M12.6 14.4v1.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-query" viewBox="0 0 24 24"><path d="M4 5.6A2.4 2.4 0 0 1 6.4 3.2h11.2A2.4 2.4 0 0 1 20 5.6v12.8a2.4 2.4 0 0 1-2.4 2.4H6.4A2.4 2.4 0 0 1 4 18.4z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7.8 8.4h8.4M7.8 12h8.4M7.8 15.6h5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-food" viewBox="0 0 24 24"><path d="M6.6 3.4v6.2a2.4 2.4 0 0 0 4.8 0V3.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M9 3.4v17.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M16.4 20.6V3.4c2.2 1.6 2.8 3.6 2.8 6.2 0 2.4-.6 4-2.8 5.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="i-single" viewBox="0 0 24 24"><path d="M3.6 12h16.8M14 5.6 20.4 12 14 18.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-round" viewBox="0 0 24 24"><path d="M4 8.4h12.6l-3.4-3.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 15.6H7.4l3.4 3.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-transfer" viewBox="0 0 24 24"><path d="M3.6 6.6h3.8l9.2 10.8h3.8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.6 17.4h3.8l3.2-3.8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.6 6.6h2l3.4 3.4-3.4 3.4h-2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-change" viewBox="0 0 24 24"><path d="M6.2 3.4h7.6l4.4 4.4v12.8H6.2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M13.6 3.4v4.6h4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 13.2h6M12 10.2v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-s1" viewBox="0 0 24 24"><circle cx="8.6" cy="6.4" r="3.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 20.4c0-3.6 2.5-6.1 5.6-6.1 1.3 0 2.5.4 3.4 1.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M18.4 11c1.1-.9 2.9-2.2 2.9-3.7 0-1.4-1.1-2.3-2.4-1.6-.5.2-1 .7-1.3 1.2-.3-.5-.8-1-1.3-1.2-1.3-.7-2.4.2-2.4 1.6 0 1.5 1.8 2.8 2.9 3.7l.8.7z" fill="currentColor"/></symbol>
+    <symbol id="i-s2" viewBox="0 0 24 24"><circle cx="10.6" cy="10.4" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M14.9 14.7 20.6 20.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8.4 8.2h4.4v4.4H8.4z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="i-s3" viewBox="0 0 24 24"><path d="M3.4 15.4 5.2 9.6A2.6 2.6 0 0 1 7.7 7.8h8.6a2.6 2.6 0 0 1 2.5 1.8l1.8 5.8v4.6h-3.2v-2H6.6v2H3.4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4.4 15.4h15.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="7.6" cy="12.6" r="1.1" fill="currentColor"/><circle cx="16.4" cy="12.6" r="1.1" fill="currentColor"/></symbol>
+    <symbol id="i-s4" viewBox="0 0 24 24"><path d="M12 3.2 3.8 7v10L12 20.8 20.2 17V7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3.8 7 12 11l8.2-4M12 11v9.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-s5" viewBox="0 0 24 24"><path d="M12 2.8v18.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 5.2h6.6l2 2.2-2 2.2H12z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 12h-6.6l-2 2.2 2 2.2H12z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-s6" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13.2" rx="2.8" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="13.6" r="3.4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.8 7 10 4.4h4L15.2 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-s7" viewBox="0 0 24 24"><path d="M3.4 5.6h17.2v11.2H11l-5 4v-4H3.4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 10h8M8 12.8h5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 20.4V4.2M5.4 10.8 12 4.2l6.6 6.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-notice" viewBox="0 0 24 24"><path d="M4 9.4h3.4L16 4.6v14.8l-8.6-4.8H4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M18.4 9a4.4 4.4 0 0 1 0 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M7.4 14.2v5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M7.6 3.6 10 8.2l-2 2c.9 2 2.5 3.6 4.5 4.5l2-2 4.6 2.4-.6 3.2c-5.2.8-12-6-11.2-11.2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><rect x="3.4" y="3.4" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="13.6" y="3.4" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="3.4" y="13.6" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M13.6 13.6h3v3h-3zM17.6 17.6h3v3h-3z" fill="currentColor"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.6 10 17.4 19.2 6.6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="M14.6 5 7.6 12l7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M9.4 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-train" viewBox="0 0 24 24"><path d="M12 3.2c4.4 0 6.8 3 6.8 7.4v6.6a2.6 2.6 0 0 1-2.6 2.6H7.8a2.6 2.6 0 0 1-2.6-2.6v-6.6C5.2 6.2 7.6 3.2 12 3.2z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5.6 11.4h12.8M9.4 20.4l-2 2.4M14.6 20.4l2 2.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="9.2" cy="7.6" r="1" fill="currentColor"/><circle cx="14.8" cy="7.6" r="1" fill="currentColor"/></symbol>
+    <symbol id="i-wechat" viewBox="0 0 24 24"><path d="M9.2 4.2C5.6 4.2 2.8 6.5 2.8 9.4c0 1.6.9 3 2.3 4l-.6 2 2.3-1.2c.7.2 1.5.3 2.4.3h.5a4.9 4.9 0 0 1-.2-1.4c0-2.8 2.8-5 6.2-5h.6c-.5-2.2-3-3.9-6.1-3.9z" fill="currentColor"/><path d="M21.2 13.1c0-2.3-2.3-4.2-5.1-4.2s-5.1 1.9-5.1 4.2 2.3 4.2 5.1 4.2c.6 0 1.2-.1 1.8-.3l1.9 1-.5-1.7c1.2-.8 1.9-1.9 1.9-3.2z" fill="currentColor"/></symbol>
+    <symbol id="i-weibo" viewBox="0 0 24 24"><ellipse cx="10.4" cy="14.6" rx="6.4" ry="4.6" fill="currentColor"/><path d="M16.6 3.4c2.4 0 4.2 1.9 4.2 4.2M16.8 6.4c1 0 1.8.8 1.8 1.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  </svg>
+
+  <!-- ============ 头部 ============ -->
+  <div class="header" role="banner">
+    <div class="wrapper header-con">
+      <h1 class="logo">
+        <a href="index.html" title="中国铁路12306">
+          <img class="logo-img" src="images/logo@2x.png" alt="中国铁路12306 12306 CHINA RAILWAY">
+        </a>
+      </h1>
+
+      <div class="header-right">
+        <div class="header-search">
+          <div class="search-bd">
+            <input type="text" class="search-input" id="search-input" autocomplete="off"
+              placeholder="搜索车票、餐饮、常旅客、相关规章" aria-label="搜索车票、餐饮、常旅客、相关规章">
+            <div class="search-down" id="searchDown">
+              <a href="javascript:;" class="close" id="searchDownClose">关闭</a>
+              <ul class="search-down-list" id="searchDownList"></ul>
+            </div>
+          </div>
+          <a class="search-btn" href="javascript:;" id="searchBtn" aria-label="点击搜索">
+            <svg class="icon"><use href="#i-search"></use></svg>
+          </a>
+        </div>
+        <ul class="header-menu" role="menubar" id="topMenu"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 主导航 ============ -->
+  <div class="nav-box">
+    <div class="wrapper">
+      <ul class="nav" id="mainNav"></ul>
+    </div>
+  </div>
+  <!-- ============ 首屏：轮播 + 查询框 ============ -->
+  <div class="section-first">
+    <div class="fullSlide" id="fullSlide">
+      <div class="bd"><ul class="sowingMap" id="sowingMap"></ul></div>
+      <div class="hd"><ul id="slideDots"></ul></div>
+    </div>
+
+    <div class="search-index">
+      <!-- 左侧菜单 -->
+      <ul class="search-side" id="searchSide">
+        <li class="active"><a href="javascript:;"><svg class="icon"><use href="#i-ticket"></use></svg>车票</a></li>
+        <li><a href="javascript:;"><svg class="icon"><use href="#i-query"></use></svg>常用查询</a></li>
+        <li class="last"><a href="javascript:;"><svg class="icon"><use href="#i-food"></use></svg>订餐</a></li>
+      </ul>
+
+      <!-- 右侧内容 -->
+      <div class="search-main">
+        <!-- 车票 -->
+        <div class="search-main-item active">
+          <div class="search-tab-hd">
+            <ul id="ticketTabs">
+              <li class="active"><a href="javascript:;"><svg class="icon"><use href="#i-single"></use></svg>单程</a></li>
+              <li><a href="javascript:;"><svg class="icon"><use href="#i-round"></use></svg>往返</a></li>
+              <li><a href="javascript:;"><svg class="icon"><use href="#i-transfer"></use></svg>中转换乘</a></li>
+              <li><a href="javascript:;"><svg class="icon"><use href="#i-change"></use></svg>退改签</a></li>
+            </ul>
+          </div>
+          <div class="search-tab-bd" id="ticketPanels">
+            <!-- 单程 -->
+            <div class="search-tab-item active">
+              <div class="search-form">
+                <div class="form-item-group">
+                  <div class="form-item">
+                    <label for="fromStationText" class="form-label">出发地</label>
+                    <div class="form-bd">
+                      <div class="input-box input-city">
+                        <input type="text" class="input" id="fromStationText" autocomplete="off" data-role="station" aria-label="请输入或选择出发地">
+                        <svg class="icon icon-place" data-click="fromStationText"><use href="#i-place"></use></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-item">
+                    <label for="toStationText" class="form-label">到达地</label>
+                    <div class="form-bd">
+                      <div class="input-box input-city">
+                        <input type="text" class="input" id="toStationText" autocomplete="off" data-role="station" aria-label="请输入或选择到达地">
+                        <svg class="icon icon-place" data-click="toStationText"><use href="#i-place"></use></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <i class="city-change" id="danChange" title="切换"><svg class="icon"><use href="#i-swap"></use></svg></i>
+                </div>
+                <div class="form-item">
+                  <label for="train_date" class="form-label">出发日期</label>
+                  <div class="form-bd">
+                    <div class="input-box input-data">
+                      <input type="text" class="input" id="train_date" autocomplete="off" data-role="date" readonly aria-label="请选择出发日期">
+                      <svg class="icon icon-date" data-click="train_date"><use href="#i-date"></use></svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-item form-item-check">
+                  <div class="form-bd">
+                    <ul class="check-list">
+                      <li class="check-item" data-check="学生"><i></i>学生</li>
+                      <li class="check-item" data-check="高铁/动车"><i></i>高铁/动车</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="form-item form-item-btn">
+                  <a href="javascript:;" class="btn btn-primary form-block" data-search>查&nbsp;&nbsp;&nbsp;&nbsp;询</a>
+                </div>
+              </div>
+              <div class="search-history">
+                <div class="search-history-bd">
+                  <i class="history-prev" id="iconLeftHos"><svg class="icon"><use href="#i-left"></use></svg></i>
+                  <i class="history-next" id="iconRightHos"><svg class="icon"><use href="#i-right"></use></svg></i>
+                  <div class="history-list-wrap"><ul class="history-list" id="history_ul"></ul></div>
+                </div>
+                <div class="search-history-btn"><a href="javascript:;" id="clearHistory">删除历史</a></div>
+              </div>
+            </div>
+
+            <!-- 往返 -->
+            <div class="search-tab-item">
+              <div class="search-form">
+                <div class="form-item-group">
+                  <div class="form-item">
+                    <label for="fromStationFanText" class="form-label">出发地</label>
+                    <div class="form-bd">
+                      <div class="input-box input-city">
+                        <input type="text" class="input" id="fromStationFanText" autocomplete="off" data-role="station" aria-label="请输入或选择出发地">
+                        <svg class="icon icon-place" data-click="fromStationFanText"><use href="#i-place"></use></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-item">
+                    <label for="toStationFanText" class="form-label">到达地</label>
+                    <div class="form-bd">
+                      <div class="input-box input-city">
+                        <input type="text" class="input" id="toStationFanText" autocomplete="off" data-role="station" aria-label="请输入或选择到达地">
+                        <svg class="icon icon-place" data-click="toStationFanText"><use href="#i-place"></use></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <i class="city-change" id="fanChange" title="切换"><svg class="icon"><use href="#i-swap"></use></svg></i>
+                </div>
+                <div class="form-item">
+                  <label for="from_date" class="form-label">出发日期</label>
+                  <div class="form-bd">
+                    <div class="input-box input-data">
+                      <input type="text" class="input" id="from_date" autocomplete="off" data-role="date" readonly aria-label="请选择出发日期">
+                      <svg class="icon icon-date" data-click="from_date"><use href="#i-date"></use></svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-item">
+                  <label for="to_date" class="form-label">返程日期</label>
+                  <div class="form-bd">
+                    <div class="input-box input-data">
+                      <input type="text" class="input" id="to_date" autocomplete="off" data-role="date" readonly aria-label="请选择返程日期">
+                      <svg class="icon icon-date" data-click="to_date"><use href="#i-date"></use></svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-item form-item-check">
+                  <div class="form-bd">
+                    <ul class="check-list">
+                      <li class="check-item" data-check="学生"><i></i>学生</li>
+                      <li class="check-item" data-check="高铁/动车"><i></i>高铁/动车</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="form-item form-item-btn">
+                  <a href="javascript:;" class="btn btn-primary form-block" data-search>查&nbsp;&nbsp;&nbsp;&nbsp;询</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 中转换乘 -->
+            <div class="search-tab-item">
+              <div class="search-form">
+                <div class="form-item-group">
+                  <div class="form-item">
+                    <label for="fromStationZhText" class="form-label">出发地</label>
+                    <div class="form-bd">
+                      <div class="input-box input-city">
+                        <input type="text" class="input" id="fromStationZhText" autocomplete="off" data-role="station" aria-label="请输入或选择出发地">
+                        <svg class="icon icon-place" data-click="fromStationZhText"><use href="#i-place"></use></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-item">
+                    <label for="toStationZhText" class="form-label">到达地</label>
+                    <div class="form-bd">
+                      <div class="input-box input-city">
+                        <input type="text" class="input" id="toStationZhText" autocomplete="off" data-role="station" aria-label="请输入或选择到达地">
+                        <svg class="icon icon-place" data-click="toStationZhText"><use href="#i-place"></use></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <i class="city-change" id="zhChange" title="切换"><svg class="icon"><use href="#i-swap"></use></svg></i>
+                </div>
+                <div class="form-item">
+                  <label for="zh_date" class="form-label">乘车日期</label>
+                  <div class="form-bd">
+                    <div class="input-box input-data">
+                      <input type="text" class="input" id="zh_date" autocomplete="off" data-role="date" readonly aria-label="请选择乘车日期">
+                      <svg class="icon icon-date" data-click="zh_date"><use href="#i-date"></use></svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-item form-item-check">
+                  <div class="form-bd">
+                    <ul class="check-list">
+                      <li class="check-item" data-check="学生"><i></i>学生</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="form-item form-item-btn">
+                  <a href="javascript:;" class="btn btn-primary form-block" data-search>查&nbsp;&nbsp;&nbsp;&nbsp;询</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 退改签 -->
+            <div class="search-tab-item">
+              <div class="search-form">
+                <div class="form-item">
+                  <label for="queryType" class="form-label">查询类型</label>
+                  <div class="form-bd">
+                    <div class="input-box input-select">
+                      <select class="input" id="queryType">
+                        <option>按订票日期</option>
+                        <option>按乘车日期</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-item">
+                  <label class="form-label">日期</label>
+                  <div class="form-bd">
+                    <div class="input-box input-range">
+                      <input type="text" class="input" id="range_start" autocomplete="off" data-role="date" readonly aria-label="开始日期">
+                      <span class="range-split">至</span>
+                      <input type="text" class="input" id="range_end" autocomplete="off" data-role="date" readonly aria-label="结束日期">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-item">
+                  <label for="keyword" class="form-label">关键字</label>
+                  <div class="form-bd">
+                    <div class="input-box">
+                      <input type="text" class="input" id="keyword" autocomplete="off" placeholder="订单号 / 车次" aria-label="关键字">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-item form-item-btn">
+                  <a href="javascript:;" class="btn btn-primary form-block" data-search>查&nbsp;&nbsp;&nbsp;&nbsp;询</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 常用查询 -->
+        <div class="search-main-item">
+          <div class="search-tab-hd">
+            <ul id="commonTabs">
+              <li class="active"><a href="javascript:;">正晚点</a></li>
+              <li><a href="javascript:;">检票口</a></li>
+              <li><a href="javascript:;">起售时间</a></li>
+              <li><a href="javascript:;">天气</a></li>
+            </ul>
+          </div>
+          <div class="search-tab-bd" id="commonPanels">
+            <div class="search-tab-item active">
+              <div class="search-form">
+                <div class="form-item">
+                  <label for="zwdType" class="form-label">查询类型</label>
+                  <div class="form-bd"><div class="input-box input-select"><select class="input" id="zwdType"><option>到达站</option><option>出发站</option></select></div></div>
+                </div>
+                <div class="form-item">
+                  <label for="zwdStation" class="form-label">车站</label>
+                  <div class="form-bd">
+                    <div class="input-box input-city">
+                      <input type="text" class="input" id="zwdStation" autocomplete="off" data-role="station" aria-label="车站">
+                      <svg class="icon icon-place" data-click="zwdStation"><use href="#i-place"></use></svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-item">
+                  <label for="zwdTrain" class="form-label">车次</label>
+                  <div class="form-bd"><div class="input-box"><input type="text" class="input" id="zwdTrain" placeholder="如 G1" autocomplete="off"></div></div>
+                </div>
+                <div class="form-item form-item-btn"><a href="javascript:;" class="btn btn-primary form-block" data-search>查&nbsp;&nbsp;&nbsp;&nbsp;询</a></div>
+              </div>
+            </div>
+            <div class="search-tab-item">
+              <div class="search-form">
+                <div class="form-item">
+                  <label for="jpkDate" class="form-label">乘车日期</label>
+                  <div class="form-bd">
+                    <div class="input-box input-data">
+                      <input type="text" class="input" id="jpkDate" autocomplete="off" data-role="date" readonly aria-label="乘车日期">
+                      <svg class="icon icon-date" data-click="jpkDate"><use href="#i-date"></use></svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-item">
+                  <label for="jpkTrain" class="form-label">车次</label>
+                  <div class="form-bd"><div class="input-box"><input type="text" class="input" id="jpkTrain" placeholder="如 G1" autocomplete="off"></div></div>
+                </div>
+                <div class="form-item">
+                  <label for="jpkStation" class="form-label">乘车站</label>
+                  <div class="form-bd"><div class="input-box input-select"><select class="input" id="jpkStation"><option>请选择车站</option></select></div></div>
+                </div>
+                <div class="form-item form-item-btn"><a href="javascript:;" class="btn btn-primary form-block" data-search>查&nbsp;&nbsp;&nbsp;&nbsp;询</a></div>
+              </div>
+            </div>
+            <div class="search-tab-item">
+              <div class="search-form">
+                <div class="form-item">
+                  <label for="saleDate" class="form-label">起售日期</label>
+                  <div class="form-bd">
+                    <div class="input-box input-data">
+                      <input type="text" class="input" id="saleDate" autocomplete="off" data-role="date" readonly aria-label="起售日期">
+                      <svg class="icon icon-date" data-click="saleDate"><use href="#i-date"></use></svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-item">
+                  <label for="saleStation" class="form-label">起售车站</label>
+                  <div class="form-bd">
+                    <div class="input-box input-city">
+                      <input type="text" class="input" id="saleStation" autocomplete="off" data-role="station" aria-label="起售车站">
+                      <svg class="icon icon-place" data-click="saleStation"><use href="#i-place"></use></svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-item form-item-btn"><a href="javascript:;" class="btn btn-primary form-block" data-search>查&nbsp;&nbsp;&nbsp;&nbsp;询</a></div>
+              </div>
+            </div>
+            <div class="search-tab-item">
+              <div class="search-form">
+                <div class="form-item">
+                  <label for="weatherCity" class="form-label">目的地</label>
+                  <div class="form-bd">
+                    <div class="input-box input-city">
+                      <input type="text" class="input" id="weatherCity" autocomplete="off" data-role="station" aria-label="目的地">
+                      <svg class="icon icon-place" data-click="weatherCity"><use href="#i-place"></use></svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-item form-item-btn"><a href="javascript:;" class="btn btn-primary form-block" data-search>查&nbsp;&nbsp;&nbsp;&nbsp;询</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 订餐 -->
+        <div class="search-main-item">
+          <div class="search-tab-hd" style="border-bottom:none;height:24px">
+            <ul><li class="active" style="width:100%"><a href="javascript:;" style="color:#3b99fc;cursor:default">预订餐饮•特产</a></li></ul>
+          </div>
+          <div class="search-tab-bd">
+            <div class="search-tab-item active">
+              <div class="search-form">
+                <div class="form-item">
+                  <label for="dinner_date" class="form-label">出发日期</label>
+                  <div class="form-bd">
+                    <div class="input-box input-data">
+                      <input type="text" class="input" id="dinner_date" autocomplete="off" data-role="date" readonly aria-label="出发日期">
+                      <svg class="icon icon-date" data-click="dinner_date"><use href="#i-date"></use></svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-item">
+                  <label for="dinner_sub_mun" class="form-label">出发车次</label>
+                  <div class="form-bd">
+                    <div class="input-box"><input type="text" class="input" id="dinner_sub_mun" placeholder="仅支持G、D字头的动车组列车" autocomplete="off" style="text-transform:uppercase"></div>
+                  </div>
+                </div>
+                <div class="form-item form-item-btn"><a href="javascript:;" class="btn btn-primary form-block" data-search>查&nbsp;&nbsp;&nbsp;&nbsp;询</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ============ 主体内容 ============ -->
+  <div class="wrapper">
+    <!-- 便捷服务 -->
+    <ul class="service-list" id="serviceList"></ul>
+
+    <!-- 铁路旅游 / 热门推荐 -->
+    <div class="section" id="travelSection">
+      <div class="section-hd">
+        <h3 class="section-tit">铁路旅游</h3>
+        <a href="javascript:;" class="more">更多&gt;</a>
+      </div>
+      <ul class="travel-train-list" id="travelList"></ul>
+    </div>
+
+    <!-- 新闻公告 -->
+    <div class="news-tab" id="newsTab">
+      <div class="tab-hd">
+        <ul class="lists" id="newsTabs">
+          <li class="active"><a href="javascript:;">最新发布</a></li>
+          <li><a href="javascript:;">常见问题</a></li>
+          <li><a href="javascript:;">信用信息</a></li>
+        </ul>
+      </div>
+      <div class="tab-bd">
+        <div class="tab-item active">
+          <div class="news-index">
+            <ul class="news-index-list state" id="newsList"></ul>
+            <div class="news-more"><a href="javascript:;">更多&gt;</a></div>
+          </div>
+        </div>
+        <div class="tab-item">
+          <div class="news-index">
+            <ul class="news-index-list question" id="faqList"></ul>
+            <div class="news-more"><a href="javascript:;">更多&gt;</a></div>
+          </div>
+        </div>
+        <div class="tab-item">
+          <div class="discredit-list-box">
+            <dl class="discredit-list pull-left">
+              <dt><svg class="icon"><use href="#i-notice"></use></svg>失信被执行人(自然人)公示</dt>
+              <dd class="discredit-body" id="discreditLeft"></dd>
+              <dd class="more"><a href="javascript:;">更多&gt;</a></dd>
+            </dl>
+            <dl class="discredit-list pull-right">
+              <dt><svg class="icon"><use href="#i-notice"></use></svg>失信已执行人(自然人)公布</dt>
+              <dd class="discredit-body" id="discreditRight"></dd>
+              <dd class="more"><a href="javascript:;">更多&gt;</a></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 底部 ============ -->
+  <div class="footer">
+    <div class="wrapper footer-con">
+      <div class="foot-links">
+        <h2 class="foot-con-tit">友情链接</h2>
+        <ul class="foot-links-list" id="footLinks"></ul>
+      </div>
+      <ul class="foot-code" id="footCode"></ul>
+    </div>
+    <div class="footer-txt">
+      <p>
+        <span class="mr">版权所有©2008-2025</span>
+        <span class="mr">中国铁道科学研究院集团有限公司</span>
+        <span>技术支持：铁旅科技有限公司</span>
+      </p>
+      <p>
+        <span class="mr"><a href="javascript:;">京公网安备 11010802038392号</a></span>
+        <span class="mr">|</span>
+        <span class="mr"><a href="javascript:;">京ICP备05020493号-4</a></span>
+        <span class="mr">|</span>
+        <span>ICP证：京B2-20202537</span>
+        <span class="mr">|</span>
+        <span><a href="javascript:;">营业执照</a></span>
+      </p>
+      <div class="footer-badge">适老化无障碍服务</div>
+    </div>
+  </div>
+
+  <!-- 返回顶部 -->
+  <div class="gototop" id="goTop">
+    <a href="javascript:;" title="返回顶部"><svg class="icon"><use href="#i-up"></use></svg></a>
+  </div>
+
+  <!-- 右侧悬浮菜单 -->
+  <div class="fixed-right" id="fixedRight">
+    <ul class="fixed-right-menu">
+      <li class="menu-item">
+        <a href="javascript:;" class="menu-hd"><svg class="icon"><use href="#i-notice"></use></svg><h4 class="menu-name">最新发布</h4></a>
+      </li>
+      <li class="menu-item">
+        <a href="javascript:;" class="menu-hd"><svg class="icon"><use href="#i-phone"></use></svg><h4 class="menu-name">联系客服</h4></a>
+      </li>
+      <li class="menu-item">
+        <a href="javascript:;" class="menu-hd"><svg class="icon"><use href="#i-code"></use></svg><h4 class="menu-name">APP下载</h4></a>
+        <div class="menu-bd menu-code">
+          <h4 class="menu-code-name">铁路12306</h4>
+          <div class="menu-code-pic">
+            <svg class="qr" data-qr="sideApp" viewBox="0 0 29 29"></svg>
+            <div class="code-tips">官方APP下载，目前铁路未授权其他网站或APP开展类似服务内容，敬请广大用户注意。</div>
+          </div>
+        </div>
+      </li>
+      <li class="menu-item" id="closeRight">
+        <a href="javascript:;" class="menu-hd"><svg class="icon"><use href="#i-close"></use></svg><h4 class="menu-name">关闭</h4></a>
+      </li>
+    </ul>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

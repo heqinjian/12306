@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>12306 CHINA RAILWAY</title>
+  <meta name="description" content="China Railway 12306 official English website. Train ticket booking, refund, endorsement and travel information.">
+  <link rel="stylesheet" href="css/index.css">
+  <style>
+    /* Cookie bar */
+    .cookie-bar { background:#2b2b2b; color:#ddd; font-size:13px; text-align:center; padding:7px 40px; position:relative; }
+    .cookie-bar a { color:#3b99fc; font-style:italic; }
+    .cookie-bar .ok-btn { display:inline-block; margin-left:14px; padding:1px 12px; border:1px solid #888; border-radius:3px; color:#eee; cursor:pointer; }
+    .cookie-bar .x { position:absolute; right:14px; top:6px; color:#aaa; cursor:pointer; font-size:16px; }
+
+    /* Banner */
+    .en-first .fullSlide .bd { height:450px; }
+    .en-first .sowingMap li { height:450px; background-size:cover !important; }
+
+    /* Disable hover-driven dropdowns on this page; JS toggles .open instead */
+    .nav-item:hover > .nav-bd { display:none; }
+    .nav-item.open > .nav-bd { display:flex; }
+    .menu-nav:hover > .menu-nav-bd { display:none; }
+    .menu-nav.open > .menu-nav-bd { display:block; }
+    .nav-hd .icon-down, .menu-nav-hd .caret { transition:transform .2s; }
+    .nav-item.open .icon-down, .menu-nav.open .caret { transform:rotate(180deg); }
+
+    /* Search card below banner */
+    .en-search { position:relative; z-index:60; margin-top:-30px; padding-bottom:10px; }
+    .en-search-card { background:#fff; border-radius:8px; box-shadow:0 6px 20px rgba(0,0,0,.12); overflow:hidden; }
+    .en-search-tip { padding:12px 22px; background:#f6f9fd; color:#666; font-size:12px; line-height:1.7; border-bottom:1px solid #eef2f7; }
+    .en-search-row { display:flex; align-items:stretch; padding:18px 22px; }
+    .en-field { position:relative; flex:1 1 0; min-width:0; padding:6px 14px; border:1px solid #e4e9f0; border-right:none; }
+    .en-field:first-child { border-radius:6px 0 0 6px; }
+    .en-field .lab { display:block; color:#999; font-size:12px; line-height:18px; }
+    .en-field .val { display:block; width:100%; border:none; outline:none; font-size:15px; color:#333; background:transparent; height:26px; line-height:26px; }
+    .en-field .val::placeholder { color:#bbb; }
+    .en-field-date { flex:1.2 1 0; }
+    .en-search-btn { flex:none; width:150px; background:#ff8000; color:#fff; border:none; border-radius:0 6px 6px 0; font-size:16px; cursor:pointer; }
+    .en-search-btn:hover { background:#ff6602; }
+    .en-swap { position:absolute; left:50%; top:50%; z-index:5; width:26px; height:26px; margin:-13px 0 0 -13px; border-radius:50%; background:#ff8000; color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; border:2px solid #fff; }
+    .en-swap .icon { width:15px; height:15px; }
+    .en-high { padding:0 22px 16px; color:#666; font-size:13px; display:flex; align-items:center; }
+    .en-high input { margin-right:7px; }
+
+    /* Quick Guide */
+    .en-guide { margin-top:40px; }
+    .en-guide-tit { color:#3b99fc; font-size:24px; font-weight:400; margin-bottom:18px; }
+    .en-guide-grid { display:flex; flex-wrap:wrap; }
+    .en-guide-col { width:50%; }
+    .en-guide-col li { position:relative; padding:7px 0 7px 22px; color:#555; }
+    .en-guide-col li::before { content:""; position:absolute; left:4px; top:15px; width:6px; height:6px; background:#3b99fc; }
+    .en-guide-col li a { color:#555; }
+    .en-guide-col li a:hover { color:#3b99fc; }
+    .en-guide-more { color:#999; margin-top:6px; }
+
+    /* Station dropdown */
+    .en-station-drop { position:absolute; z-index:300; top:100%; left:0; right:0; max-height:220px; overflow-y:auto; background:#fff; border:1px solid #dedede; box-shadow:0 6px 16px rgba(0,0,0,.14); display:none; }
+    .en-station-drop li { padding:7px 12px; color:#555; cursor:pointer; font-size:13px; }
+    .en-station-drop li:hover { background:#f2f8ff; color:#3b99fc; }
+  </style>
+</head>
+<body>
+
+  <!-- Cookie bar -->
+  <div class="cookie-bar" id="cookieBar">
+    By using this website, you are deemed to consent to our <a href="javascript:;">Use of cookies</a>.
+    <span class="ok-btn" id="cookieOk">ok</span>
+    <span class="x" id="cookieX">&times;</span>
+  </div>
+
+  <!-- Header -->
+  <div class="header" role="banner">
+    <div class="wrapper header-con">
+      <h1 class="logo">
+        <a href="index_en.html" title="12306 CHINA RAILWAY">
+          <img class="logo-img" src="images/logo@2x.png" alt="China Railway 12306">
+        </a>
+      </h1>
+      <div class="header-right">
+        <ul class="header-menu" role="menubar">
+          <li class="menu-item"><a href="javascript:;" class="menu-nav-hd">Login</a></li>
+          <li class="menu-item menu-line">|</li>
+          <li class="menu-item"><a href="javascript:;" class="menu-nav-hd">Register</a></li>
+          <li class="menu-item menu-line">|</li>
+          <li class="menu-item menu-nav">
+            <a href="javascript:;" class="menu-nav-hd dd-trigger">My 12306<i class="caret"></i></a>
+            <ul class="menu-nav-bd">
+              <li><a href="javascript:;">Unfinished Orders</a></li>
+              <li><a href="javascript:;">Order History</a></li>
+              <li><a href="javascript:;">My Points</a></li>
+              <li><a href="javascript:;">My Passengers</a></li>
+              <li><a href="javascript:;">Account Security</a></li>
+            </ul>
+          </li>
+          <li class="menu-item menu-line">|</li>
+          <li class="menu-item menu-nav">
+            <a href="javascript:;" class="menu-nav-hd dd-trigger">简体中文<i class="caret"></i></a>
+            <ul class="menu-nav-bd">
+              <li><a href="index.html">简体中文</a></li>
+              <li><a href="index_en.html">English</a></li>
+            </ul>
+          </li>
+          <li class="menu-item menu-line">|</li>
+          <li class="menu-item menu-nav">
+            <a href="javascript:;" class="menu-nav-hd dd-trigger">Contact us<i class="caret"></i></a>
+            <ul class="menu-nav-bd">
+              <li><a href="javascript:;">Hotline: +86 12306</a></li>
+              <li><a href="javascript:;">Service hours: 24h</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <div class="nav-box">
+    <div class="wrapper">
+      <ul class="nav">
+        <li class="nav-item active"><a href="index_en.html" class="nav-hd">Home</a></li>
+        <li class="nav-item">
+          <a href="javascript:;" class="nav-hd dd-trigger">Booking<i class="icon-down"></i></a>
+          <div class="nav-bd" style="width:420px;">
+            <div class="nav-bd-item" style="width:210px;">
+              <h3 class="nav-tit">Purchase</h3>
+              <ul class="nav-con">
+                <li><a href="javascript:;">Tickets</a></li>
+                <li><a href="javascript:;">International trains</a></li>
+              </ul>
+            </div>
+            <div class="nav-bd-item" style="width:210px;">
+              <h3 class="nav-tit">Changes</h3>
+              <ul class="nav-con">
+                <li><a href="javascript:;">Refund</a></li>
+                <li><a href="javascript:;">Endorsement</a></li>
+                <li><a href="javascript:;">Change of destination</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="javascript:;" class="nav-hd dd-trigger">Travel guides<i class="icon-down"></i></a>
+          <div class="nav-bd" style="width:620px;">
+            <div class="nav-bd-item" style="width:200px;">
+              <h3 class="nav-tit">Ticketing</h3>
+              <ul class="nav-con">
+                <li><a href="javascript:;">Real-name ticketing</a></li>
+                <li><a href="javascript:;">Ticket types</a></li>
+              </ul>
+            </div>
+            <div class="nav-bd-item" style="width:210px;">
+              <h3 class="nav-tit">Endorsement &amp; Refund</h3>
+              <ul class="nav-con">
+                <li><a href="javascript:;">What is endorsement?</a></li>
+                <li><a href="javascript:;">Refund rules</a></li>
+              </ul>
+            </div>
+            <div class="nav-bd-item" style="width:210px;">
+              <h3 class="nav-tit">Miscellaneous</h3>
+              <ul class="nav-con">
+                <li><a href="javascript:;">Child tickets</a></li>
+                <li><a href="javascript:;">Prohibited items</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Banner carousel -->
+  <div class="en-first">
+    <div class="fullSlide">
+      <div class="bd"><ul class="sowingMap" id="sowingMap"></ul></div>
+      <div class="hd"><ul id="slideDots"></ul></div>
+    </div>
+  </div>
+
+  <!-- Search box below banner -->
+  <div class="en-search">
+    <div class="wrapper">
+      <div class="en-search-card">
+        <div class="en-search-tip">
+          The 12306.cn website provides information query and ticket refund services 24 hours a day, and the ticket sales and endorsement services from 5:00 to 1:00 the next day (5:00 to 23:30 on Tuesday).
+        </div>
+        <div class="en-search-row">
+          <div class="en-field" id="fromField">
+            <span class="lab">From</span>
+            <input type="text" class="val" id="fromStationText" autocomplete="off" placeholder="Station">
+            <div class="en-station-drop" id="fromDrop"></div>
+          </div>
+          <div class="en-field" id="toField">
+            <span class="lab">To</span>
+            <input type="text" class="val" id="toStationText" autocomplete="off" placeholder="Station">
+            <div class="en-station-drop" id="toDrop"></div>
+          </div>
+          <span class="en-swap" id="swapBtn" title="Swap">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3.5 4.5 7.5l4 4M4.5 7.5h14.8M15.5 20.5l4-4-4-4M19.5 16.5H4.7"/></svg>
+          </span>
+          <div class="en-field en-field-date">
+            <span class="lab">Date</span>
+            <input type="text" class="val" id="trainDate" readonly placeholder="Departure date">
+          </div>
+          <button type="button" class="en-search-btn" id="searchBtn">Search</button>
+        </div>
+        <div class="en-high">
+          <label style="display:flex;align-items:center;cursor:pointer;">
+            <input type="checkbox" id="highOnly"> High-speed trains only
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Guide -->
+  <div class="wrapper en-guide">
+    <h2 class="en-guide-tit">Quick Guide</h2>
+    <div class="en-guide-grid">
+      <ul class="en-guide-col">
+        <li><a href="javascript:;">What ID documents are accepted by 12306.cn English website?</a></li>
+        <li><a href="javascript:;">What services does 12306.cn English website provide?</a></li>
+      </ul>
+      <ul class="en-guide-col">
+        <li><a href="javascript:;">What is endorsement?</a></li>
+        <li><a href="javascript:;">What are the rules of ticket endorsement?</a></li>
+        <li class="en-guide-more"><a href="javascript:;">More&gt;</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer" style="margin-top:50px;">
+    <div class="footer-txt">
+      <p>COPYRIGHT&copy;2008-2025 CHINA ACADEMY OF RAILWAY SCIENCES CORPORATION LIMITED, ALL RIGHTS RESERVED</p>
+      <p>
+        <span class="mr"><a href="javascript:;">京公网安备 11010802038392号</a></span>
+        <span class="mr">|</span>
+        <span class="mr"><a href="javascript:;">京ICP备05020493号-4</a></span>
+        <span class="mr">|</span>
+        <span><a href="javascript:;">ICP证：京B2-20202537</a></span>
+      </p>
+      <p>
+        <span class="mr"><a href="javascript:;">Privacy Policy</a></span>
+        <span class="mr">|</span>
+        <span><a href="javascript:;">Cookie Statement</a></span>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // ---------- Dropdowns: click to toggle, click outside / Esc to close ----------
+    var triggers = document.querySelectorAll(".dd-trigger");
+    function closeAll(except){
+      triggers.forEach(function(t){
+        var li = t.closest(".nav-item") || t.closest(".menu-nav");
+        if (li && li !== except) li.classList.remove("open");
+      });
+    }
+    triggers.forEach(function(t){
+      t.addEventListener("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var li = t.closest(".nav-item") || t.closest(".menu-nav");
+        var isOpen = li.classList.contains("open");
+        closeAll();
+        li.classList.toggle("open", !isOpen);
+      });
+    });
+    document.addEventListener("click", function(){ closeAll(); });
+    document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeAll(); });
+    // Keep a dropdown open when clicking inside its panel
+    document.querySelectorAll(".nav-bd, .menu-nav-bd").forEach(function(panel){
+      panel.addEventListener("click", function(e){ e.stopPropagation(); });
+    });
+
+    // ---------- Banner carousel ----------
+    var banners = ["images/en_banner1.jpg","images/en_banner2.jpg","images/en_banner3.jpg"];
+    var map = document.getElementById("sowingMap"), dots = document.getElementById("slideDots");
+    map.innerHTML = banners.map(function(u,i){
+      return '<li class="slide'+(i===0?' on':'')+'" style="background:url(\''+u+'\') center center no-repeat;"></li>';
+    }).join("");
+    dots.innerHTML = banners.map(function(u,i){
+      return '<li class="'+(i===0?'on':'')+'">'+(i+1)+'</li>';
+    }).join("");
+    var idx = 0, timer;
+    function go(i){
+      idx = (i+banners.length)%banners.length;
+      Array.prototype.forEach.call(map.children,function(li,j){ li.classList.toggle("on",j===idx); });
+      Array.prototype.forEach.call(dots.children,function(li,j){ li.classList.toggle("on",j===idx); });
+    }
+    Array.prototype.forEach.call(dots.children,function(li,j){
+      li.onclick = function(){ go(j); restart(); };
+    });
+    function restart(){ clearInterval(timer); timer = setInterval(function(){ go(idx+1); },5000); }
+    restart();
+
+    // ---------- Cookie bar ----------
+    var cb = document.getElementById("cookieBar");
+    document.getElementById("cookieOk").onclick = function(){ cb.style.display="none"; };
+    document.getElementById("cookieX").onclick = function(){ cb.style.display="none"; };
+
+    // ---------- Station autocomplete ----------
+    var stations = [
+      ["Beijing","beijing"],["Beijing South","beijingnan"],["Beijing West","beijingxi"],
+      ["Shanghai","shanghai"],["Shanghai Hongqiao","shanghaihongqiao"],
+      ["Guangzhou","guangzhou"],["Guangzhou South","guangzhounan"],
+      ["Shenzhen","shenzhen"],["Shenzhen North","shenzhenbei"],
+      ["Tianjin","tianjin"],["Chongqing","chongqing"],["Chengdu","chengdu"],["Chengdu East","chengdudong"],
+      ["Hangzhou","hangzhou"],["Hangzhou East","hangzhoudong"],["Nanjing","nanjing"],["Nanjing South","nanjingnan"],
+      ["Suzhou","suzhou"],["Wuhan","wuhan"],["Xi'an","xian"],["Xi'an North","xianbei"],
+      ["Zhengzhou","zhengzhou"],["Zhengzhou East","zhengzhoudong"],["Changsha","changsha"],
+      ["Changsha South","changshanan"],["Jinan","jinan"],["Qingdao","qingdao"],
+      ["Shenyang","shenyang"],["Dalian","dalian"],["Dalian North","dalianbei"],
+      ["Changchun","changchun"],["Harbin","haerbin"],["Shijiazhuang","shijiazhuang"],
+      ["Taiyuan","taiyuan"],["Hohhot","huhehaote"],["Lanzhou","lanzhou"],["Xining","xining"],
+      ["Urumqi","wulumuqi"],["Lhasa","lasa"],["Guiyang","guiyang"],["Kunming","kunming"],
+      ["Nanning","nanning"],["Guilin","guilin"],["Haikou","haikou"],["Sanya","sanya"],
+      ["Fuzhou","fuzhou"],["Xiamen","xiamen"],["Nanchang","nanchang"],["Hefei","hefei"],
+      ["Wuxi","wuxi"],["Xuzhou","xuzhou"],["Ningbo","ningbo"]
+    ];
+    function bindStation(inputId, dropId){
+      var input = document.getElementById(inputId), drop = document.getElementById(dropId);
+      function search(){
+        var q = input.value.trim().toLowerCase();
+        if(!q){ drop.style.display="none"; return; }
+        var list = stations.filter(function(s){
+          return s[0].toLowerCase().indexOf(q)>=0 || s[1].indexOf(q)===0;
+        }).slice(0,10);
+        if(!list.length){ drop.style.display="none"; return; }
+        drop.innerHTML = list.map(function(s){ return '<li data-n="'+s[0]+'">'+s[0]+'</li>'; }).join("");
+        drop.style.display="block";
+      }
+      input.addEventListener("input",search);
+      input.addEventListener("focus",search);
+      drop.addEventListener("mousedown",function(e){
+        var li = e.target.closest("li");
+        if(!li) return;
+        e.preventDefault();
+        input.value = li.getAttribute("data-n");
+        drop.style.display="none";
+      });
+      input.addEventListener("blur",function(){ setTimeout(function(){ drop.style.display="none"; },150); });
+    }
+    bindStation("fromStationText","fromDrop");
+    bindStation("toStationText","toDrop");
+
+    // ---------- Swap ----------
+    document.getElementById("swapBtn").onclick = function(){
+      var a = document.getElementById("fromStationText"), b = document.getElementById("toStationText");
+      var t = a.value; a.value = b.value; b.value = t;
+    };
+
+    // ---------- Date ----------
+    var dateInput = document.getElementById("trainDate");
+    dateInput.value = new Date().toDateString();
+    dateInput.onclick = function(){
+      var d = new Date(dateInput.value || Date.now());
+      d.setDate(d.getDate()+1);
+      dateInput.value = d.toDateString();
+    };
+
+    // ---------- Search ----------
+    document.getElementById("searchBtn").onclick = function(){
+      var f = document.getElementById("fromStationText").value.trim();
+      var t = document.getElementById("toStationText").value.trim();
+      if(!f){ alert("Please select the place of departure."); return; }
+      if(!t){ alert("Please select the place of arrival."); return; }
+      if(f===t){ alert("Departure and arrival cannot be the same."); return; }
+      alert("Searching trains: "+f+" \u2192 "+t+" on "+dateInput.value);
+    };
+  </script>
+</body>
+</html>
