@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <!-- 移动端视口，viewport-fit=cover 用于适配刘海屏安全区域 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>12306 手机端 - 下导航</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+        "Helvetica Neue", "Microsoft YaHei", sans-serif;
+      background-color: #f5f6f8;
+      color: #333;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== 页面演示内容（用于演示固定下导航的滚动效果）===== */
+    .page {
+      /* 底部留出下导航的高度，避免内容被遮挡 */
+      padding-bottom: calc(60px + env(safe-area-inset-bottom));
+    }
+
+    .page-header {
+      background-color: #1296db;
+      color: #fff;
+      padding: 16px;
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .placeholder {
+      background-color: #fff;
+      margin: 12px;
+      padding: 24px 16px;
+      border-radius: 8px;
+      font-size: 15px;
+      color: #888;
+      line-height: 1.6;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    /* ===== 下导航（Tab Bar）=====
+       1. position: fixed 固定在视口底部（12306 下导航为固定效果）
+       2. flex 布局让 5 个导航项平分宽度，实现自适应宽度
+       3. SVG 图标使用 currentColor，颜色由 CSS 控制 */
+    .tabbar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+      display: flex;
+      width: 100%;
+      height: 60px;
+      background-color: #ffffff;
+      border-top: 1px solid #e8e8e8;
+      /* 适配 iPhone 等全面屏底部安全区域 */
+      padding-bottom: env(safe-area-inset-bottom);
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    /* 每个导航项：flex:1 平分宽度，内容水平垂直居中 */
+    .tabbar__item {
+      flex: 1 1 0;
+      min-width: 0;               /* 允许收缩，保证 5 项在窄屏平分宽度 */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 3px;
+      color: #333333;            /* 未选中：深灰色 */
+      text-decoration: none;
+      font-size: 12px;
+      cursor: pointer;
+      transition: color 0.2s;
+      user-select: none;
+    }
+
+    /* SVG 图标尺寸：固定宽高，大小由 CSS 控制 */
+    .tabbar__icon {
+      display: block;
+      width: 26px;
+      height: 26px;
+      fill: currentColor;         /* 图标颜色跟随文字颜色 */
+    }
+
+    /* 选中态：12306 主题蓝 */
+    .tabbar__item.active {
+      color: #1296db;
+    }
+
+    /* 点击反馈 */
+    .tabbar__item:active {
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <!-- 页面内容（演示用） -->
+  <main class="page">
+    <header class="page-header">12306 手机端下导航演示</header>
+    <div class="placeholder">页面内容区域：上下滚动页面，底部导航始终固定显示。</div>
+    <div class="placeholder">导航项使用 SVG 图标（fill: currentColor），通过 CSS 控制大小与颜色。</div>
+    <div class="placeholder">五个导航项通过 flex:1 平分屏幕宽度，随视口宽度自适应。</div>
+    <div class="placeholder">占位内容</div>
+    <div class="placeholder">占位内容</div>
+    <div class="placeholder">占位内容</div>
+    <div class="placeholder">占位内容</div>
+    <div class="placeholder">占位内容</div>
+  </main>
+
+  <!-- 下导航：首页 / 出行服务 / 订单 / 铁路会员 / 我的 -->
+  <nav class="tabbar">
+    <!-- 首页 -->
+    <a class="tabbar__item active" href="javascript:;">
+      <svg class="tabbar__icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M596.34 58.535V33.329A34.186 34.186 0 0 0 561.446 0.009h-99.328a34.146 34.146 0 0 0-34.894 33.24v25.286A432.282 432.282 0 0 0 64.14 477.545a425.902 425.902 0 0 0 248.87 382.42v-0.434l47.89-91.765a323.227 323.227 0 0 1-189.044-290.223 332.049 332.049 0 0 1 339.887-323.935 332.088 332.088 0 0 1 340.083 323.935 323.58 323.58 0 0 1-188.65 290.223l47.89 92.198a424.645 424.64 0 0 0 248.79-382.42A432.518 432.518 0 0 0 596.34 58.534z"/>
+        <path d="M781.092 965.436s-163.878-32.768-198.26-41.51-37.061-55.73-37.061-55.73V607.078a39.7 39.7 0 0 1 28.829-39.384l94.128-27.806V439.301a51.2 51.2 0 0 0-52.302-49.82H407.177a51.2 51.2 0 0 0-52.263 49.82v100.942l94.129 27.845a40.172 40.172 0 0 1 28.75 39.384V868.63s-2.638 46.946-37.06 55.65-198.26 41.55-198.26 41.55-20.874 5.435-20.874 14.533v43.599h579.933V980.4c0-9.176-20.48-14.965-20.48-14.965z"/>
+      </svg>
+      <span>首页</span>
+    </a>
+
+    <!-- 出行服务 -->
+    <a class="tabbar__item" href="javascript:;">
+      <svg class="tabbar__icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M789.33504 872.96h-64v32a32 32 0 1 1-64 0v-32H362.66496v32a32 32 0 1 1-64 0v-32h-64C175.75424 872.96 128 825.20576 128 766.29504V306.34496C128 247.43424 175.75424 199.68 234.66496 199.68H320V135.68C320 100.33152 348.65152 71.68 384 71.68h256c35.34848 0 64 28.65152 64 64V199.68h85.33504C848.24576 199.68 896 247.43424 896 306.34496v459.94496c0 58.91584-47.75424 106.67008-106.66496 106.67008zM640 157.01504a21.33504 21.33504 0 0 0-21.33504-21.33504H405.33504A21.32992 21.32992 0 0 0 384 157.01504V199.68h256v-42.66496z m192 149.32992a42.66496 42.66496 0 0 0-42.66496-42.66496H234.66496a42.66496 42.66496 0 0 0-42.66496 42.66496v459.94496a42.66496 42.66496 0 0 0 42.66496 42.66496h554.66496a42.66496 42.66496 0 0 0 42.66496-42.66496c0.00512 0.00512 0.00512-459.94496 0.00512-459.94496z m-202.66496 395.95008a32 32 0 0 1-32-32V402.34496a32 32 0 1 1 64 0v267.94496a32.00512 32.00512 0 0 1-32 32.00512z m-234.67008 0a32 32 0 0 1-32-32V402.34496a32 32 0 1 1 64 0v267.94496a32 32 0 0 1-32 32.00512z"/>
+      </svg>
+      <span>出行服务</span>
+    </a>
+
+    <!-- 订单 -->
+    <a class="tabbar__item" href="javascript:;">
+      <svg class="tabbar__icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M866.1 875h-662V160.7H866V875z m-612-50H816V210.7H254.1V825z"/>
+        <path d="M364.6 654.5H589v50H364.6zM364.6 492h340.9v50H364.6zM364.6 329.5h340.9v50H364.6z"/>
+      </svg>
+      <span>订单</span>
+    </a>
+
+    <!-- 铁路会员 -->
+    <a class="tabbar__item" href="javascript:;">
+      <svg class="tabbar__icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M724.949333 160a74.666667 74.666667 0 0 1 60.373334 30.741333l137.514666 189.077334a74.666667 74.666667 0 0 1-5.013333 94.016L567.36 861.162667a74.666667 74.666667 0 0 1-110.72 0L106.176 473.834667a74.666667 74.666667 0 0 1-5.013333-94.016l137.514666-189.077334a74.666667 74.666667 0 0 1 60.373334-30.741333h425.898666z m0 64H299.050667a10.666667 10.666667 0 0 0-8.618667 4.394667l-137.514667 189.077333a10.666667 10.666667 0 0 0 0.725334 13.44L504.106667 818.197333a10.666667 10.666667 0 0 0 15.829333 0l350.442667-387.328a10.666667 10.666667 0 0 0 0.725333-13.44l-137.514667-189.056a10.666667 10.666667 0 0 0-8.618666-4.394666z m-63.893333 182.229333a32 32 0 0 1 47.445333 42.944l-172.778666 190.954667a32 32 0 0 1-47.445334 0l-172.202666-190.314667a32 32 0 0 1 47.445333-42.944L512 570.965333l149.056-164.736z"/>
+      </svg>
+      <span>铁路会员</span>
+    </a>
+
+    <!-- 我的 -->
+    <a class="tabbar__item" href="javascript:;">
+      <svg class="tabbar__icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M870.28063614 880.90108526c-34.49970878 55.15240693-65.06548594 0-65.06548594 0-28.67166035-146.99633643-140.78424815-261.36549404-292.121042-261.36549404-273.00000586 0-294.03584385 261.36549404-294.03584385 261.36549404l0 0c-37.47758994 51.04848955-65.34159873 0-65.34159872 0 0-135.02095576 90.22592724-256.11215625 218.69752324-304.60727638C306.15970977 531.2235667 262.62022959 455.22509346 262.62022959 369.0617126c0-138.33970576 112.13507285-250.47477773 250.47477773-250.47477773 138.34060489 0 250.47477773 112.13507285 250.47477774 250.47477773 0 88.97217714-46.51736133 166.90613731-116.43235928 211.33871191C855.24283144 658.58711416 870.28063614 880.90108526 870.28063614 880.90108526zM698.22818721 369.0617126c0-102.24537802-82.88960097-185.13407901-185.13407901-185.13407901-102.24447802 0-185.13407901 82.88870185-185.134079 185.13407901 0 102.24447802 82.88960097 185.13227989 185.134079 185.13227988C615.34038535 554.19399248 698.22818721 471.30619062 698.22818721 369.0617126z"/>
+      </svg>
+      <span>我的</span>
+    </a>
+  </nav>
+
+  <script>
+    // 点击导航项切换选中态（演示交互）
+    var items = document.querySelectorAll('.tabbar__item');
+    items.forEach(function (item) {
+      item.addEventListener('click', function () {
+        items.forEach(function (i) { i.classList.remove('active'); });
+        item.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
